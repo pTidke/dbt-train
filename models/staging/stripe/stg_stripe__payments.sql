@@ -1,11 +1,3 @@
--- select 
-
---     ORDERID as order_id,
---     ID as customer_id,
---     AMOUNT as amount
-
--- from raw.stripe.payment
-
 with renamed as (
 
     select
@@ -17,7 +9,7 @@ with renamed as (
         created as payment_created,
         _batched_at
 
-    from raw.stripe.payment
+    from {{ source('stripe', 'payment') }}
 
 )
 
